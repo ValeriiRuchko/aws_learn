@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'test-sam
+
+  Sample SAM Template for test-sam
+
+  '
+Globals:
+  Function:
+    Timeout: 10
+    MemorySize: 256
+Resources:
+  ReverseProxyFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: go1.x
+      SamResourceId: ReverseProxyFunction
+    Properties:
+      CodeUri: ReverseProxyFunction
+      Handler: bootstrap
+      Runtime: provided.al2023
+      Architectures:
+      - arm64
+      Events:
+        CatchAll:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+      Environment:
+        Variables:
+          PARAM1: VALUE

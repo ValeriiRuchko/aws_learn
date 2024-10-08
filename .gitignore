@@ -12,7 +12,6 @@ bin
 *.dylib
 .env
 
-
 # Test binary, build with `go test -c`
 *.test
 
@@ -21,6 +20,4 @@ bin
 
 .DS_Store
 node_modules/
-.aws-sam
-tmp/
 
