@@ -11,6 +11,7 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/awslabs/aws-lambda-go-api-proxy/gin"
 	"github.com/gin-gonic/gin"
+	"lambda-reverse-proxy/proxy/db_ops"
 
 	_ "github.com/tursodatabase/libsql-client-go/libsql"
 )
@@ -51,15 +52,6 @@ func queryUsers(db *sql.DB) ([]User, error) {
 var ginLambda *ginadapter.GinLambdaV2
 
 func init() {
-	url := os.Getenv("TursoDatabaseURL") + "?authToken=" + os.Getenv("TursoAuthToken")
-
-	db, err := sql.Open("libsql", url)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "failed to open db %s: %s", url, err)
-		os.Exit(1)
-	}
-	// defer db.Close()
-
 	// db.Exec("CREATE TABLE test (id SERIAL, user TEXT NOT NULL, name TEXT NOT NULL);")
 	// db.Exec("INSERT INTO test (user, name) VALUES ('Test user 1', 'Name is not important');")
 	//
@@ -73,6 +65,10 @@ func init() {
 	// gin.SetMode(gin.ReleaseMode);
 
 	r.GET("/hello", func(c *gin.Context) {
+		db := db_ops.Initialize_Connection()
+		defer fmt.Println("DB connection was closed")
+		defer db.Close()
+
 		all_users, err := queryUsers(db)
 		if err != nil {
 			fmt.Println("FUCK")
