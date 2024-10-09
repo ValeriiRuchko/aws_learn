@@ -9,6 +9,15 @@ Globals:
   Function:
     Timeout: 10
     MemorySize: 256
+Parameters:
+  TursoDatabaseURL:
+    Type: String
+    Description: URI to remote db
+    Default: no uri
+  TursoAuthToken:
+    Type: String
+    Description: Token to access db
+    Default: you don't have access go back
 Resources:
   ReverseProxyFunction:
     Type: AWS::Serverless::Function
@@ -29,4 +38,5 @@ Resources:
             Method: ANY
       Environment:
         Variables:
-          PARAM1: VALUE
+          TursoDatabaseURL: NONE1
+          TursoAuthToken: NONE2

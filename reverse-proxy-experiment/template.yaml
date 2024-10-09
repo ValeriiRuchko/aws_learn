@@ -11,6 +11,16 @@ Globals:
     Timeout: 10
     MemorySize: 256
 
+Parameters:
+  TursoDatabaseURL:
+    Type: String
+    Description: URI to remote db
+    Default: "no uri"
+  TursoAuthToken:
+    Type: String
+    Description: Token to access db
+    Default: "you don't have access go back"
+
 Resources:
   ReverseProxyFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
@@ -30,4 +40,5 @@ Resources:
             Method: ANY
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
-          PARAM1: VALUE
+          TursoDatabaseURL: NONE1
+          TursoAuthToken: NONE2

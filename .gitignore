@@ -11,6 +11,7 @@ bin
 *.so
 *.dylib
 .env
+.env.json
 
 # Test binary, build with `go test -c`
 *.test
