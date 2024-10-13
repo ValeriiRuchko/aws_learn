@@ -9,7 +9,7 @@
 ## CD to the lambda-directory you intend to work on, for example:
 
 ```BASH
-  cd reverse-proxy-experiment/
+  cd server-lambdas/
 ```
 
 ## Run
