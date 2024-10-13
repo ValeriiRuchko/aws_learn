@@ -12,7 +12,7 @@ bin
 *.dylib
 .env
 .env.json
-reverse-proxy-experiment/.bin/
+server-lambdas/.bin/
 
 
 # Test binary, build with `go test -c`
