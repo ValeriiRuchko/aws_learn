@@ -32,6 +32,12 @@ AND
   air
 ```
 
+### To run locally without hot-reload (for cases when there is not enought RAM or it just doesn't make sense for the frequency of changes you add:
+
+```BASH
+  pnpm run dev:start
+```
+
 ### To deploy to AWS:
 
 ```BASH
